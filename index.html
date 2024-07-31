@@ -3,11 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Location to WhatsApp</title>
+    <title>Carte de Visite Virtuelle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+        }
+        .card img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .card h2 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .card p {
+            margin: 5px 0;
+            color: #777;
+        }
+        .card a {
+            text-decoration: none;
+            color: #1e90ff;
+        }
+        .card a:hover {
+            text-decoration: underline;
+        }
+        .card button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #1e90ff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .card button:hover {
+            background-color: #0b7dda;
+        }
+    </style>
 </head>
 <body>
-    <h1>Send Your Location to WhatsApp</h1>
-    
+    <div class="card">
+        <img src="https://via.placeholder.com/100" alt="Votre photo">
+        <h2>Hamza</h2>
+        <p>Livreur</p>
+        <p>+33 6 23 73 78 92</p>
+        <p><a href="mailto:email@example.com">email@example.com</a></p>
+        <p><a href="https://www.linkedin.com/in/votreprofil" target="_blank">LinkedIn</a></p>
+        <button onclick="sendLocation()">Envoyer Localisation à WhatsApp</button>
+    </div>
+
     <script>
         function sendLocation() {
             if (navigator.geolocation) {
@@ -18,7 +78,6 @@
                     const message = `Voici ma position : https://maps.google.com/maps?q=loc:${latitude},${longitude}`;
                     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                     
-                    // Ouvrir le lien dans un nouvel onglet
                     window.open(whatsappUrl, '_blank');
                 }, error => {
                     alert('Erreur lors de l\'obtention de la localisation : ' + error.message);
@@ -27,9 +86,6 @@
                 alert('La géolocalisation n\'est pas supportée par ce navigateur.');
             }
         }
-
-        // Appel de la fonction lors du chargement de la page
-        window.addEventListener('load', sendLocation);
     </script>
 </body>
 </html>
